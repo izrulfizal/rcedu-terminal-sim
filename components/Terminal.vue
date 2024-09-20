@@ -3,9 +3,9 @@
 </template>
 
 <script>
-import { Terminal } from '@xterm/xterm';
-// import pkg from '@xterm/xterm';
-// const { Terminal } = pkg;
+// import { Terminal } from '@xterm/xterm';
+import pkg from '@xterm/xterm';
+const { Terminal } = pkg;
 import '@xterm/xterm/css/xterm.css'; 
 
 export default {
