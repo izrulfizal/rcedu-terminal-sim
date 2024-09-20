@@ -11,7 +11,7 @@ import '@xterm/xterm/css/xterm.css';
 export default {
   data() {
     return {
-      currentInput: '', // Store the user's input
+      currentInput: '', 
     };
   },
   mounted() {
@@ -25,34 +25,33 @@ export default {
   },
   methods: {
     handleUserInput() {
-      this.term.write("Welcome to RCEdu Cloud Simulator!\r\n");
+      this.term.write("Welcome to RCEdu CloudHunt Simulator!\r\n");
       this.term.write("$ ");
       
       this.term.onKey(e => {
         const char = e.key;
 
         if (char === '\r') {
-          // When Enter is pressed, process the input
           this.executeCommand();
         } else if (char === '\u007f') {
-          // Handle backspace (char code for backspace is 127)
+  
           if (this.currentInput.length > 0) {
             this.currentInput = this.currentInput.slice(0, -1);
-            this.term.write('\b \b'); // Move cursor back, clear character
+            this.term.write('\b \b'); 
           }
         } else {
-          this.currentInput += char; // Add char to the current input
-          this.term.write(char); // Show the character on the terminal
+          this.currentInput += char; 
+          this.term.write(char); 
         }
       });
     },
     executeCommand() {
-      const command = this.currentInput.trim(); // Trim spaces from input
+      const command = this.currentInput.trim(); 
 
-      // Clear current input
+ 
       this.currentInput = '';
 
-      // Check the command
+     
       if (command === 'ls') {
         this.term.write('\r\nRunning "ls"...\r\n');
         this.term.write('file1.txt  file2.txt  directory1/\r\n');
@@ -62,17 +61,17 @@ export default {
       } else if (command === 'pwd') {
         this.term.write('\r\n/home/user\r\n');
       } else if (command === 'clear') {
-        // Clear the terminal and directly write the new prompt
+        
         this.term.clear(); 
         setTimeout(() => {
           this.term.write('$ ');
-        }, 0); // Ensure new prompt is written after clearing the screen
-        return; // Exit here to avoid writing the prompt twice
+        }, 0);
+        return; 
       } else {
         this.term.write(`\r\nCommand not found: ${command}\r\n`);
       }
 
-      // After executing, prompt again
+      
       this.term.write('$ ');
     }
   }
@@ -82,7 +81,7 @@ export default {
 <style scoped>
 .terminal-container {
   width: 100vw;
-  height: 100vh; /* Full height of the left container */
+  height: 100vh; 
   background: black;
   color: white;
 }
