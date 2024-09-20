@@ -25,7 +25,8 @@ export default {
   },
   methods: {
     handleUserInput() {
-      this.term.write("Welcome to RCEdu CloudHunt Simulator! \nEnter 'help' to view list of commands.\r\n");
+      this.term.write("Welcome to RCEdu CloudHunt Simulator!\r\n");
+      this.term.write("Enter 'help' to view list of command.\r\n");
       this.term.write("$ ");
       
       this.term.onKey(e => {
