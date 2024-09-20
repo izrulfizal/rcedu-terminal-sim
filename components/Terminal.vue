@@ -3,9 +3,9 @@
 </template>
 
 <script>
-// import { Terminal } from '@xterm/xterm';
-import pkg from '@xterm/xterm';
-const { Terminal } = pkg;
+import { Terminal } from '@xterm/xterm';
+// import pkg from '@xterm/xterm';
+// const { Terminal } = pkg;
 import '@xterm/xterm/css/xterm.css'; 
 
 export default {
@@ -25,7 +25,7 @@ export default {
   },
   methods: {
     handleUserInput() {
-      this.term.write("Welcome to RCEdu CloudHunt Simulator!\r\n");
+      this.term.write("Welcome to RCEdu CloudHunt Simulator! Enter 'help' to view list of commands.\r\n");
       this.term.write("$ ");
       
       this.term.onKey(e => {
@@ -46,34 +46,47 @@ export default {
       });
     },
     executeCommand() {
-      const command = this.currentInput.trim(); 
+  const command = this.currentInput.trim(); // Trim spaces from input
 
- 
-      this.currentInput = '';
+  // Clear current input
+  this.currentInput = '';
 
-     
-      if (command === 'ls') {
-        this.term.write('\r\nRunning "ls"...\r\n');
-        this.term.write('file1.txt  file2.txt  directory1/\r\n');
-      } else if (command.startsWith('cd ')) {
-        const dir = command.slice(3);
-        this.term.write(`\r\nChanging directory to ${dir}\r\n`);
-      } else if (command === 'pwd') {
-        this.term.write('\r\n/home/user\r\n');
-      } else if (command === 'clear') {
-        
-        this.term.clear(); 
-        setTimeout(() => {
-          this.term.write('$ ');
-        }, 0);
-        return; 
-      } else {
-        this.term.write(`\r\nCommand not found: ${command}\r\n`);
-      }
-
-      
+  // Check the command
+  if (command === 'ls') {
+    this.term.write('\r\nRunning "ls"...\r\n');
+    this.term.write('file1.txt  file2.txt  directory1/\r\n');
+  } else if (command.startsWith('cd ')) {
+    const dir = command.slice(3);
+    this.term.write(`\r\nChanging directory to ${dir}\r\n`);
+  } else if (command === 'pwd') {
+    this.term.write('\r\n/home/user\r\n');
+  } else if (command === 'clear') {
+    this.term.clear(); 
+    setTimeout(() => {
       this.term.write('$ ');
-    }
+    }, 0);
+    return;
+  } else if (command === 'help') {
+    // Write the help message line by line to avoid unwanted spaces or indents
+    this.term.write('\r\nWelcome to the RCEdu Cloud Simulator Help Page!\r\n');
+    this.term.write('Available commands:\r\n');
+    this.term.write('----------------------------------------\r\n');
+    this.term.write('ls     - List files and directories\r\n');
+    this.term.write('cd     - Change directory\r\n');
+    this.term.write('pwd    - Show current directory\r\n');
+    this.term.write('clear  - Clear the terminal screen\r\n');
+    this.term.write('echo   - Print text\r\n');
+    this.term.write('exit   - Exit the terminal\r\n');
+    this.term.write('help   - Show this help message\r\n');
+    this.term.write('----------------------------------------\r\n');
+  } else {
+    this.term.write(`\r\nCommand not found: ${command}\r\n`);
+  }
+
+  // After executing, prompt again
+  this.term.write('$ ');
+}
+
   }
 };
 </script>
