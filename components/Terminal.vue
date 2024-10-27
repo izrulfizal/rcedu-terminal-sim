@@ -14,7 +14,7 @@ export default {
   data() {
     return {
       currentInput: "",
-      currentPath: ["root"], 
+      currentPath: ["root"],
       fileSystem: {
         root: {
           type: "directory",
@@ -124,13 +124,17 @@ export default {
       rows: 80,
       cols: 80,
       cursorBlink: true,
+      fontSize: 20,
     });
     this.term.open(this.$refs.terminal);
     this.handleUserInput();
   },
   methods: {
     handleUserInput() {
-      this.term.write("Welcome to RCEdu CloudHunt Simulator!\r\n");
+      this.term.write("\x1b[1;32mWelcome to CloudHunt Competition!\x1b[0m\r\n");
+      this.term.write(
+        "\x1b[1;34mExplore the server for clues and answer the questions given.\x1b[0m\r\n"
+      );
       this.term.write("Enter 'help' to view list of commands.\r\n");
       let dirPath = "$ " + this.currentPath.slice(-1)[0] + " ~ ";
       this.term.write(dirPath);
@@ -166,7 +170,8 @@ export default {
         this.term.clear();
 
         this.term.write("\r\n" + "Screen cleared" + "\r\n");
-        this.term.write("$ ");
+        let dirPath = "$ " + this.currentPath.slice(-1)[0] + " ~ ";
+        this.term.write(dirPath);
         return;
       } else if (command.startsWith("cat ")) {
         const output = this.cat(command);
