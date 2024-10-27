@@ -33,12 +33,94 @@ export default {
                       type: "file",
                       content: "This is file2 content.",
                     },
+                    "clue1.txt": {
+                      type: "file",
+                      content: "Clue 1: Look deeper into the /etc directory.",
+                    },
+                    "secret.sh": {
+                      type: "file",
+                      content:
+                        "#!/bin/bash\necho 'Clue 2: Check the logs in /var/log'",
+                    },
+                  },
+                },
+                guest: {
+                  type: "directory",
+                  contents: {
+                    "hidden.txt": {
+                      type: "file",
+                      content:
+                        "Clue 3: Hidden treasure can be found in /root/.vault",
+                    },
+                    "README.md": {
+                      type: "file",
+                      content:
+                        "Clue 4: Documentation is key; try exploring /home/user/documents.",
+                    },
                   },
                 },
               },
             },
-            etc: { type: "directory", contents: {} },
-            var: { type: "directory", contents: {} },
+            etc: {
+              type: "directory",
+              contents: {
+                "config.ini": {
+                  type: "file",
+                  content:
+                    "Clue 5: Configuration holds secrets, but logs reveal them in /var/log.",
+                },
+                "clue2.conf": {
+                  type: "file",
+                  content:
+                    "Clue 6: Sometimes, clues are in plain sight - look inside /home/user/clues.",
+                },
+              },
+            },
+            var: {
+              type: "directory",
+              contents: {
+                log: {
+                  type: "directory",
+                  contents: {
+                    "system.log": {
+                      type: "file",
+                      content:
+                        "Clue 7: System logs can be overwhelming, but the next hint is in /tmp.",
+                    },
+                    "error.log": {
+                      type: "file",
+                      content:
+                        "Clue 8: Errors often lead to solutions. Check /home/user/.hidden_clues.",
+                    },
+                  },
+                },
+              },
+            },
+            tmp: {
+              type: "directory",
+              contents: {
+                "note.txt": {
+                  type: "file",
+                  content:
+                    "Clue 9: Temporary files disappear quickly; better look in /home/user/docs.",
+                },
+              },
+            },
+            root: {
+              type: "directory",
+              contents: {
+                ".vault": {
+                  type: "directory",
+                  contents: {
+                    "final_clue.bash": {
+                      type: "file",
+                      content:
+                        "#!/bin/bash\necho 'Clue 10: Congratulations! You’ve found the final clue!'",
+                    },
+                  },
+                },
+              },
+            },
           },
         },
       },
