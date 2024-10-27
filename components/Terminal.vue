@@ -44,7 +44,7 @@ export default {
   },
   mounted() {
     this.term = new Terminal({
-      rows: 20,
+      rows: 80,
       cols: 80,
       cursorBlink: true,
     });
@@ -55,7 +55,8 @@ export default {
     handleUserInput() {
       this.term.write("Welcome to RCEdu CloudHunt Simulator!\r\n");
       this.term.write("Enter 'help' to view list of commands.\r\n");
-      this.term.write("$ ");
+      let dirPath = "$ " + this.currentPath.slice(-1)[0] + " ~ ";
+      this.term.write(dirPath);
 
       this.term.onKey((e) => {
         const char = e.key;
@@ -86,6 +87,8 @@ export default {
         this.term.write(`\r\n/${this.currentPath.join("/")}\r\n`);
       } else if (command === "clear") {
         this.term.clear();
+
+        this.term.write("\r\n" + "Screen cleared" + "\r\n");
         this.term.write("$ ");
         return;
       } else if (command === "help") {
@@ -105,22 +108,24 @@ export default {
       } else {
         this.term.write(`\r\nCommand not found: ${command}\r\n`);
       }
-
-      this.term.write("$ ");
+      if (this.currentPath.slice(-1)[0] == undefined) {
+        let dirPath = "$ " + "root" + " ~ ";
+        this.term.write(dirPath);
+      } else {
+        let dirPath = "$ " + this.currentPath.slice(-1)[0] + " ~ ";
+        this.term.write(dirPath);
+      }
     },
 
     cd(command) {
-      console.log("cd command");
-
       const args = command.split(" ");
       if (args[1] == "..") {
         this.currentPath.pop();
-        if (this.currentPath.slice(-1)[0] == undefined){
-          var output = "You are already in root"
-        }else{
-          var output = "You are in " + this.currentPath.slice(-1)[0] 
+        if (this.currentPath.slice(-1)[0] == undefined) {
+          var output = "You are already in root";
+        } else {
+          var output = "You are in " + this.currentPath.slice(-1)[0];
         }
-        
       } else if (args[1]) {
         if (this.directoryExists(this.fileSystem, this.currentPath, args[1])) {
           this.currentPath.push(args[1]);
@@ -133,22 +138,35 @@ export default {
       } else {
         var output = "No directory specified";
       }
-      console.log(this.currentPath);
       return output;
     },
 
     ls() {
-      console.log("ls command");
+      let current = this.fileSystem;
+
+      for (const dir of this.currentPath) {
+        if (current[dir] && current[dir].type === "directory") {
+          current = current[dir].contents;
+        } else {
+          return "Not a directory";
+        }
+      }
+      if (current) {
+        return Object.keys(current).join(" ");
+      } else {
+        return "Not a directory";
+      }
     },
 
     directoryExists(fileSystem, path, last) {
-      console.log("Check directory");
       let current = fileSystem;
       path.push(last);
       for (const dir of path) {
-        console.log(current);
-        console.log(dir);
-        if (current[dir] && current[dir].type == "directory" && current[dir].contents) {
+        if (
+          current[dir] &&
+          current[dir].type == "directory" &&
+          current[dir].contents
+        ) {
           current = current[dir].contents;
         } else {
           return false;
