@@ -4,7 +4,7 @@
 
 <script>
 // import { Terminal } from "@xterm/xterm";
-// import pkg from "@xterm/xterm";
+import pkg from "@xterm/xterm";
 const { Terminal } = pkg;
 import "@xterm/xterm/css/xterm.css";
 // const { Terminal } = await import("@xterm/xterm");
@@ -27,20 +27,13 @@ export default {
                   contents: {
                     "file1.txt": {
                       type: "file",
-                      content: "This is file1 content.",
-                    },
-                    "file2.txt": {
-                      type: "file",
-                      content: "This is file2 content.",
-                    },
-                    "clue1.txt": {
-                      type: "file",
-                      content: "Clue 1: Look deeper into the /etc directory.",
+                      content:
+                        "Clue 1: Look deeper into the /etc directory.\nQuestion: What is cloud computing?",
                     },
                     "secret.sh": {
                       type: "file",
                       content:
-                        "#!/bin/bash\necho 'Clue 2: Check the logs in /var/log'",
+                        "#!/bin/bash\necho 'Clue 2: Check the logs in /var/log'\nQuestion: Name two examples of cloud computing services.",
                     },
                   },
                 },
@@ -50,12 +43,12 @@ export default {
                     "hidden.txt": {
                       type: "file",
                       content:
-                        "Clue 3: Hidden treasure can be found in /root/.vault",
+                        "Clue 3: Hidden treasure can be found in /root/.vault\nQuestion: What is the difference between Public and Private Cloud?",
                     },
                     "README.md": {
                       type: "file",
                       content:
-                        "Clue 4: Documentation is key; try exploring /home/user/documents.",
+                        "Clue 4: Documentation is key; try exploring /home/user/documents.\nQuestion: Define SaaS and give one example.",
                     },
                   },
                 },
@@ -67,12 +60,12 @@ export default {
                 "config.ini": {
                   type: "file",
                   content:
-                    "Clue 5: Configuration holds secrets, but logs reveal them in /var/log.",
+                    "Clue 5: Configuration holds secrets, but logs reveal them in /var/log.\nQuestion: What are the main benefits of cloud computing?",
                 },
                 "clue2.conf": {
                   type: "file",
                   content:
-                    "Clue 6: Sometimes, clues are in plain sight - look inside /home/user/clues.",
+                    "Clue 6: Sometimes, clues are in plain sight - look inside /home/user/clues.\nQuestion: What is IaaS and how is it different from PaaS?",
                 },
               },
             },
@@ -85,12 +78,12 @@ export default {
                     "system.log": {
                       type: "file",
                       content:
-                        "Clue 7: System logs can be overwhelming, but the next hint is in /tmp.",
+                        "Clue 7: System logs can be overwhelming, but the next hint is in /tmp.\nQuestion: Explain the concept of scalability in cloud computing.",
                     },
                     "error.log": {
                       type: "file",
                       content:
-                        "Clue 8: Errors often lead to solutions. Check /home/user/.hidden_clues.",
+                        "Clue 8: Errors often lead to solutions. Check /home/user/.hidden_clues.\nQuestion: What is cloud storage, and name one provider.",
                     },
                   },
                 },
@@ -102,7 +95,7 @@ export default {
                 "note.txt": {
                   type: "file",
                   content:
-                    "Clue 9: Temporary files disappear quickly; better look in /home/user/docs.",
+                    "Clue 9: Temporary files disappear quickly; better look in /home/user/docs.\nQuestion: How does cloud computing enhance collaboration?",
                 },
               },
             },
@@ -115,7 +108,7 @@ export default {
                     "final_clue.bash": {
                       type: "file",
                       content:
-                        "#!/bin/bash\necho 'Clue 10: Congratulations! You’ve found the final clue!'",
+                        "#!/bin/bash\necho 'Clue 10: Congratulations! You’ve found the final clue!'\nQuestion: What are hybrid clouds and their advantages?",
                     },
                   },
                 },
@@ -175,6 +168,9 @@ export default {
         this.term.write("\r\n" + "Screen cleared" + "\r\n");
         this.term.write("$ ");
         return;
+      } else if (command.startsWith("cat ")) {
+        const output = this.cat(command);
+        this.term.write(`\r\n${output}\r\n`);
       } else if (command === "help") {
         this.term.write(
           "\r\nWelcome to the RCEdu Cloud Simulator Help Page!\r\n" +
@@ -223,6 +219,34 @@ export default {
         var output = "No directory specified";
       }
       return output;
+    },
+
+    cat(command) {
+      const args = command.split(" ");
+      if (args.length < 2) {
+        return "Error: No file specified.";
+      }
+
+      const fileName = args[1];
+      let current = this.fileSystem.root;
+
+      for (const dir of this.currentPath.slice(1)) {
+        if (
+          current.contents[dir] &&
+          current.contents[dir].type === "directory"
+        ) {
+          current = current.contents[dir];
+        } else {
+          return "Error: Invalid directory path.";
+        }
+      }
+
+      const file = current.contents[fileName];
+      if (file && file.type === "file") {
+        return file.content;
+      } else {
+        return `cat: ${fileName}: No such file or directory`;
+      }
     },
 
     ls() {
