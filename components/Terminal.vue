@@ -3,9 +3,9 @@
 </template>
 
 <script>
-// import { Terminal } from "@xterm/xterm";
-import pkg from "@xterm/xterm";
-const { Terminal } = pkg;
+import { Terminal } from "@xterm/xterm";
+// import pkg from "@xterm/xterm";
+// const { Terminal } = pkg;
 import "@xterm/xterm/css/xterm.css";
 
 export default {
@@ -124,6 +124,7 @@ export default {
           var output = "Changed directory to " + args[1];
         } else {
           console.log("No such directory");
+          this.currentPath.pop();
           var output = "No such directory";
         }
       } else {
@@ -145,7 +146,7 @@ export default {
       for (const dir of path) {
         console.log(current);
         console.log(dir);
-        if (current[dir].type == "directory" && current[dir].contents) {
+        if (current[dir] && current[dir].type == "directory" && current[dir].contents) {
           current = current[dir].contents;
         } else {
           return false;
