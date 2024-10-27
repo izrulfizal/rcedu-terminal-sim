@@ -4,7 +4,7 @@
 
 <script>
 // import { Terminal } from "@xterm/xterm";
-import pkg from "@xterm/xterm";
+// import pkg from "@xterm/xterm";
 const { Terminal } = pkg;
 import "@xterm/xterm/css/xterm.css";
 // const { Terminal } = await import("@xterm/xterm");
@@ -204,10 +204,10 @@ export default {
     cd(command) {
       const args = command.split(" ");
       if (args[1] == "..") {
-        this.currentPath.pop();
-        if (this.currentPath.slice(-1)[0] == undefined) {
+        if (this.currentPath.slice(-1)[0] == "root") {
           var output = "You are already in root";
         } else {
+          this.currentPath.pop();
           var output = "You are in " + this.currentPath.slice(-1)[0];
         }
       } else if (args[1]) {
