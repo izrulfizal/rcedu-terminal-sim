@@ -14,7 +14,7 @@ export default {
   data() {
     return {
       currentInput: "",
-      currentPath: ["root"], // Start in the root directory
+      currentPath: ["root"], 
       fileSystem: {
         root: {
           type: "directory",
