@@ -4,8 +4,10 @@
 
 <script>
 // import { Terminal } from "@xterm/xterm";
-import pkg from "@xterm/xterm";
-const { Terminal } = pkg;
+// import pkg from "@xterm/xterm";
+// const { Terminal } = pkg;
+// import "@xterm/xterm/css/xterm.css";
+const { Terminal } = await import("@xterm/xterm");
 import "@xterm/xterm/css/xterm.css";
 
 export default {
