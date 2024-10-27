@@ -114,21 +114,23 @@ export default {
 
       const args = command.split(" ");
       if (args[1] == "..") {
-        console.log("up one level");
         this.currentPath.pop();
-        var output = "Up one level";
+        if (this.currentPath.slice(-1)[0] == undefined){
+          var output = "You are already in root"
+        }else{
+          var output = "You are in " + this.currentPath.slice(-1)[0] 
+        }
+        
       } else if (args[1]) {
         if (this.directoryExists(this.fileSystem, this.currentPath, args[1])) {
           this.currentPath.push(args[1]);
           this.currentPath.pop();
           var output = "Changed directory to " + args[1];
         } else {
-          console.log("No such directory");
           this.currentPath.pop();
           var output = "No such directory";
         }
       } else {
-        console.log("No directory specified");
         var output = "No directory specified";
       }
       console.log(this.currentPath);
