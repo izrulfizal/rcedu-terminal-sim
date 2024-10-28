@@ -135,6 +135,8 @@ export default {
       this.term.write(
         "\x1b[1;34mExplore the server for clues and answer the questions given.\x1b[0m\r\n"
       );
+      this.term.write("Think about where a user might keep their initial information.\r\n");
+      this.term.write("Hint: Sometimes the most basic paths lead to the most intriguing discoveries.\r\n");
       this.term.write("Enter 'help' to view list of commands.\r\n");
       let dirPath = "$ " + this.currentPath.slice(-1)[0] + " ~ ";
       this.term.write(dirPath);
@@ -185,8 +187,6 @@ export default {
             "cd     - Change directory\r\n" +
             "pwd    - Show current directory\r\n" +
             "clear  - Clear the terminal screen\r\n" +
-            "echo   - Print text\r\n" +
-            "exit   - Exit the terminal\r\n" +
             "help   - Show this help message\r\n" +
             "----------------------------------------\r\n"
         );
