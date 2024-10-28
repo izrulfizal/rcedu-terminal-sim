@@ -28,27 +28,27 @@ export default {
                     "file1.txt": {
                       type: "file",
                       content:
-                        "Clue 1: Look deeper into the /etc directory.\nQuestion: What is cloud computing?",
+                        "Clue 1: Secrets lie in configuration files; start with some essentials.\nQuestion: Describe cloud computing in one sentence.",
                     },
-                    "secret.sh": {
+                    "access.sh": {
                       type: "file",
                       content:
-                        "#!/bin/bash\necho 'Clue 2: Check the logs in /var/log'\nQuestion: Name two examples of cloud computing services.",
+                        "#!/bin/bash\necho 'Clue 2: Logs are the shadows of activity. Seek in places where activity is recorded.'\nQuestion: List three well-known cloud providers and a service they offer.",
                     },
                   },
                 },
                 guest: {
                   type: "directory",
                   contents: {
-                    "hidden.txt": {
+                    "archive.log": {
                       type: "file",
                       content:
-                        "Clue 3: Hidden treasure can be found in /root/.vault\nQuestion: What is the difference between Public and Private Cloud?",
+                        "Clue 3: Hidden knowledge is often archived. Trace the path of privileges.\nQuestion: Explain the key distinction between public and private cloud models.",
                     },
                     "README.md": {
                       type: "file",
                       content:
-                        "Clue 4: Documentation is key; try exploring /home/user/documents.\nQuestion: Define SaaS and give one example.",
+                        "Clue 4: Documentation hints are often hidden in plain sight. Look beyond conventional folders.\nQuestion: Define SaaS and explain one advantage it has over traditional software.",
                     },
                   },
                 },
@@ -57,15 +57,15 @@ export default {
             etc: {
               type: "directory",
               contents: {
-                "config.ini": {
+                "netconfig.conf": {
                   type: "file",
                   content:
-                    "Clue 5: Configuration holds secrets, but logs reveal them in /var/log.\nQuestion: What are the main benefits of cloud computing?",
+                    "Clue 5: Systems depend on connections and configurations to function.\nQuestion: Identify two primary benefits of using cloud resources over local resources.",
                 },
-                "clue2.conf": {
+                "security.rules": {
                   type: "file",
                   content:
-                    "Clue 6: Sometimes, clues are in plain sight - look inside /home/user/clues.\nQuestion: What is IaaS and how is it different from PaaS?",
+                    "Clue 6: Simple rules can lead you down the right path. Trace back to the common folders used by guests.\nQuestion: Describe the difference between IaaS and PaaS with examples.",
                 },
               },
             },
@@ -75,15 +75,15 @@ export default {
                 log: {
                   type: "directory",
                   contents: {
-                    "system.log": {
+                    "access.log": {
                       type: "file",
                       content:
-                        "Clue 7: System logs can be overwhelming, but the next hint is in /tmp.\nQuestion: Explain the concept of scalability in cloud computing.",
+                        "Clue 7: Logs reveal much, but the journey continues in temporary spaces.\nQuestion: What does it mean for a cloud service to be scalable? Give an example.",
                     },
-                    "error.log": {
+                    "errors.log": {
                       type: "file",
                       content:
-                        "Clue 8: Errors often lead to solutions. Check /home/user/.hidden_clues.\nQuestion: What is cloud storage, and name one provider.",
+                        "Clue 8: Sometimes errors point toward hidden truths in hidden directories.\nQuestion: Describe what cloud storage is and mention two key benefits.",
                     },
                   },
                 },
@@ -92,10 +92,10 @@ export default {
             tmp: {
               type: "directory",
               contents: {
-                "note.txt": {
+                "session.tmp": {
                   type: "file",
                   content:
-                    "Clue 9: Temporary files disappear quickly; better look in /home/user/docs.\nQuestion: How does cloud computing enhance collaboration?",
+                    "Clue 9: Temporary places often hold fleeting secrets. Think about where users might leave notes.\nQuestion: Explain how cloud computing enhances team collaboration and productivity.",
                 },
               },
             },
@@ -105,10 +105,10 @@ export default {
                 ".vault": {
                   type: "directory",
                   contents: {
-                    "final_clue.bash": {
+                    "final_hint.bash": {
                       type: "file",
                       content:
-                        "#!/bin/bash\necho 'Clue 10: Congratulations! You’ve found the final clue!'\nQuestion: What are hybrid clouds and their advantages?",
+                        "#!/bin/bash\necho 'Clue 10: You’ve reached the end. Your journey through the cloud has been successful!'\nTask: Create a 3 minute video explaining the benefit of cloud computing followed by your experience in CloudHunt",
                     },
                   },
                 },
