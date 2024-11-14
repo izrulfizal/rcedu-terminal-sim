@@ -161,8 +161,7 @@ export default {
         this.term.write(`\r\n${output}\r\n`);
       } else if (command === "help") {
         this.term.write(
-          "\r\nWelcome to the RCEdu Cloud Simulator Help Page!\r\n" +
-            "Available commands:\r\n" +
+          "\r\nAvailable commands:\r\n" +
             "----------------------------\r\n" +
             "ls     - List contents\r\n" +
             "cd     - Open folder\r\n" +
