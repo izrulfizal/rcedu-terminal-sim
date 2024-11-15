@@ -116,8 +116,8 @@ export default {
       this.term.write(
         "\x1b[1;34m\nExplore the server for clues and answer the questions given.\x1b[0m\r\n"
       );
-      this.term.write("\nThink about where a user might keep their initial information.\r\n");
-      this.term.write("\nHint: Sometimes the most basic paths lead to the most intriguing discoveries.\r\n");
+      // this.term.write("\nThink about where a user might keep their initial information.\r\n");
+      // this.term.write("\nHint: Sometimes the most basic paths lead to the most intriguing discoveries.\r\n");
       this.term.write("\nEnter 'help' to view list of commands.\r\n\n");
       let dirPath = "$ " + this.currentPath.slice(-1)[0] + " ~ ";
       this.term.write(dirPath);
