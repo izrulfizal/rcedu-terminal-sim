@@ -102,7 +102,7 @@ export default {
   mounted() {
     this.term = new Terminal({
       rows: 80,
-      cols: 28,
+      cols: 58,
       cursorBlink: true,
       fontSize: 18,
     });
@@ -111,8 +111,8 @@ export default {
   },
   methods: {
     handleUserInput() {
-      this.term.write("\x1b[33mGreetings SMK Dato Mohd Said Students!\x1b[0m\r\n");
-      this.term.write("\x1b[1;32m\nWelcome to Mini CloudHunt Competition!\x1b[0m\r\n");
+      this.term.write("\x1b[33mGreetings Participants!\x1b[0m\r\n");
+      this.term.write("\x1b[1;32m\nWelcome to the CloudHunt Competition!\x1b[0m\r\n");
       this.term.write(
         "\x1b[1;34m\nExplore the server for clues and answer the questions given.\x1b[0m\r\n"
       );

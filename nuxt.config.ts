@@ -8,7 +8,7 @@ export default defineNuxtConfig({
   },
   app: {
     head: {
-      title: 'Mini CloudHunt 1.0',
+      title: 'CloudHunt 2025',
       link: [
         {
           rel: 'icon',
